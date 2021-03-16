@@ -1,155 +1,47 @@
-let mic;
-let micLevel;
-let pupilX;
-let pupilY;
-let noseJump;
+//Unreliable Movie Recommendations
+
+let movie = ['Jurassic Park (1990)', 'The Day After Tomorrow (2004)', 'Halloween (1978)', 'Shrek (2001)', 'Chicken Run (2000)', 'Moulin Rouge (2001)', 'House of Wax (2005)', 'The Boy (2016)', '10 Things I Hate About You (1999)', 'Friday the 13th (1980)', 'Batman Begins (2005)', 'Just My Luck (2006)', 'Scream (1996)', 'A Nightmare on Elm Street (1984)', 'Warm Bodies (2013)', 'Kung Fu Hustle (2004)', 'The Karate Kid (1984)','Rise of the Guardians (2012)', 'Tangled (2010)', 'Tuck Everlasting (2002)', 'Get Out (2017)', 'A Nightmare Before Christmas (1993)', 'Step Brothers (2008)', 'Rush Hour (1998)', 'The Fast and the Furious (2001)', 'Elisa and Marcela (2019)', 'Mad Max: Fury Road (2015)', 'Coco (2016)', 'Black Panther (2018)', 'Slumdog Millionaire (2008)', 'The Perks of Being a Wallflower (2012)', 'Us (2019)', 'Always Be My Maybe (2019)', 'Moonlight (2016)', 'Wolf Children (2012)', 'Train to Busan (2016)', 'Aladdin (2019)', 'Instructions Not Included (2013)'];
+
+let genre = ['a horror', 'a comedy', 'a fantasy', 'a musical', 'a sci-fi', 'an action movie', 'a romantic comedy', 'a romance', 'a thriller', 'a western', 'a documentary', 'a drama', 'a mockumentary'];
+
+let mr;
+let gr;
+
+let wrds1;
+let wrds2;
 
 function setup() {
   createCanvas(400, 400);
-  background(161, 247, 228);
-  angleMode(DEGREES);
-  
-  let pupilX = map(mouseX, 0, 400, -3, 3);
-  let pupilY = map(mouseY, 0, 400, -3, 3);
-  let noseJump = map(mouseY, 0, 400, -5, 5);
-  
-  mic = new p5.AudioIn();
-  mic.start();
-  
-  drawHead();
-  drawEarCut();
-  drawEarFull();
-  drawFill();
-  drawEyes();
-  //drawNose();
-  // drawLeftPupil();
-  // drawRightPupil();
+  background(0);
+  frameRate(60);
+  intText();
+  // fortText();
+
 }
 
 function draw() {
-
-    console.log("mic level " + mic.getLevel());
-//   console.log("mouse x is: " + mouseX);
-//   console.log("mouse y is: " + mouseY);
-  
-  //pupils rotate to follow cursor
-  // pupilX = map(mouseX, 0, 400, -3, 3);
-  // pupilY = map(mouseY, 0, 400, -3, 3);
-  
-  micLevel = mic.getLevel();
-  
-  pupilX = map(mic.getLevel(), 0, .3, -3, 3);
-  pupilY = map(mic.getLevel(), 0, .3, -3, 3);
-  
-  noseJump = map(mic.getLevel(), 0, .3, -5, 5);
-  
-  drawHead();
-  drawEarCut();
-  drawEarFull();
-  drawFill();
-  drawEyes();
-  drawNose();
-  drawLeftPupil();
-  drawRightPupil();
 }
 
-
-function drawHead(){
-  noStroke();
-  fill(255);
-  beginShape();
-  vertex(width * .20, height * .30);
-  vertex(width * .80, height * .30);
-  vertex(width * .80, height * .65);
-  vertex(width * .50, height * .80);
-  vertex(width * .20, height * .65);
-  vertex(width * .20, height * .30);
-  endShape();
+function mousePressed(){
+  mr = int(random(movie.length));
+  gr = int(random(genre.length));
+  fortText();
+  wrds2 = movie[mr] + ',' + ' ' + genre[gr] + '.';
 }
 
-function drawEarCut(){
-  noStroke();
-  beginShape();
-  fill(0);
-  vertex(width * .20, height * .30);
-  vertex(width * .20, height * .20);
-  vertex(width * .30, height * .20);
-  vertex(width * .40, height * .30);
-  vertex(width * .20, height * .30);
-  endShape();
+function intText() {
+  fill(255, 0, 0);
+  textAlign(CENTER);
+  text('Movie time!', width * 0.5, height * 0.2);
+  text('(A Confusing and Unreliable Movie Randomizer)', width * 0.5, height * 0.25);
 }
 
-function drawEarFull(){
-  noStroke();
-  beginShape();
-  fill(0);
-  vertex(width * .60, height * .30);
-  vertex(width * .80, height * .10);
-  vertex(width * .80, height * .30);
-  vertex(width * .60, height * .30);
-  endShape();
+function fortText() {
+  background(0);
+  intText();
+  fill (255, 0, 0);
+  textAlign(CENTER);
+  text('You should watch:', width * 0.5, height * 0.8);
+  text(wrds1, width * 0.5, height * 0.8);
+  text(wrds2, width * 0.5, height * 0.85);
 }
-
-function drawFill(){
-  // draw left black fill
-  noStroke();
-  beginShape();
-  fill(0);
-  vertex(width * .20, height * .65);
-  vertex(width * .20, height * .30);
-  vertex(width * .50, height * .30);
-  vertex(width * .425, height * .475);
-  vertex(width * .20, height * .65);
-  endShape();
-  // draw right black fill
-  beginShape();
-  fill(0);
-  vertex(width * .80, height * .65);
-  vertex(width * .80, height * .30);
-  vertex(width * .50, height * .30);
-  vertex(width * .575, height * .475);
-  vertex(width * .80, height * .65);
-  endShape();
-}
-
-function drawEyes(){
-  fill(255, 234, 158);
-  stroke(0);
-  strokeWeight(4);
-  // draw left eye
-  circle(width * .375, height * .50, width * .125);
-  // draw right eye
-  circle(width * .625, height * .50, width * .125);
-}
-
-function drawNose(){
-  beginShape();
-  stroke(255, 206, 211);
-  fill(255, 206, 211);
-  vertex(width * .475, height * .625 + noseJump);
-  vertex(width * .525, height * .625 + noseJump);
-  vertex(width * .50, height * .65 + noseJump);
-  vertex(width * .475, height * .625 + noseJump);
-  endShape();
-}
-
-function drawLeftPupil(xPos, yPos, rotation){
-  fill(0);
-  stroke(0);
-  push();
-  ellipseMode(CENTER);
-  circle(width * .375 + pupilX, height * .50 + pupilY, width * .08);
-  pop();
- 
-}
-
-function drawRightPupil(){
-  fill(0);
-  stroke(0);
-  push();
-  ellipseMode(CENTER);
-  circle(width * .625 + pupilX, height * .50 + pupilY, width * .08);
-  pop();
-}
-
-//1.2 Update_Fixed color problem by including fill in each shape function . Pupils and nose move in response to sound-- eyes vertically from side to side and nose up and down.  
