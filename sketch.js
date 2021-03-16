@@ -16,7 +16,7 @@ function setup() {
   frameRate(60);
   intText();
   // fortText();
-
+  
 }
 
 function draw() {
@@ -26,7 +26,7 @@ function mousePressed(){
   mr = int(random(movie.length));
   gr = int(random(genre.length));
   fortText();
-  wrds2 = movie[mr] + ',' + ' ' + genre[gr] + '.';
+  wrds2 = movie[mr] + ',' + ' ' + genre[gr] + '.'; 
 }
 
 function intText() {
