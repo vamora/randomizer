@@ -1,7 +1,44 @@
 html, body {
   margin: 0;
   padding: 0;
+  background-color: black;
+  font-family: 'Movie-Star';
 }
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  color: white;
+  font-family: 'Movie-Star';
+}
+
+p {
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
 canvas {
   display: block;
+  margin: auto;
+  border-style: dotted;
+  border-color: white;
+}
+
+.randomizerButton {
+  margin: auto;
+  display: block;
+  padding: 15px;
+  background-color: #e52225;
+  font-size: 25px;
+  color: #efef1f;
+  border-style: none;
+  border-radius: 5%;
+  outline: none;
+  font-family: 'Movie-Star';
+}
+
+button:active {
+  background-color: #db5e5e;
+
 }

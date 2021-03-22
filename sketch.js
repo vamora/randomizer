@@ -2,6 +2,9 @@
 let showing;
 let posters = [];
 
+let button;
+let cnv;
+
 function preload(){
   showing = loadImage('frame.png');
 
@@ -22,21 +25,29 @@ let wrds1;
 let wrds2;
 
 function setup() {
-  createCanvas(400, 400);
+  cnv = createCanvas(400, 400);
+  cnv.parent('#canvasDiv');
+
   background(0);
   frameRate(60);
   intText();
+
+  //button = createButton('Movie, please!');
+  button = select('#randButton');
+  button.mousePressed(buttonPressed);
+  button.class('randomizerButton');
 }
 
 function draw() {
  image(showing, width * 0.235, height * 0.27, 200, 200);
 }
 
-function mousePressed(){
+function buttonPressed(){
   mr = int(random(movie.length));
   gr = int(random(genre.length));
   // pr is to show random movie posters whithin the frame
   pr = int(random(posters.length));
+  //image(random(posters), width / 2, height / 2);
   fortText();
   wrds2 = movie[mr] + ',' + ' ' + genre[gr] + '.';
 }
